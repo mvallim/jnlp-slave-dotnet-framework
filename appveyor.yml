@@ -1,0 +1,10 @@
+version: 1.0.{build}
+image:
+  - Visual Studio 2017
+
+environment:
+  matrix:
+    - ARCH: amd64
+
+build_script:
+  - ps: ./build.ps1
