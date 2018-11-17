@@ -14,14 +14,14 @@ install:
   - docker version
 
 build_script:
-  - docker build -t %DOCKER_USER%/%IMAGE%:latest -f docker/Dockerfile
-  - docker tag %DOCKER_USER%/%IMAGE%:latest %DOCKER_USER%/%IMAGE%:{version}
+  - docker build -t "$env:DOCKER_USER/$env:IMAGE:latest" -f docker/Dockerfile
+  - docker tag "$env:DOCKER_USER/$env:IMAGE:latest" "$env:DOCKER_USER/$env:IMAGE:{version}"
 
 test_script:
-  - docker run %DOCKER_USER%/%IMAGE%:latest
-  - docker run %DOCKER_USER%/%IMAGE%:{version}
+  - docker run "$env:DOCKER_USER/$env:IMAGE:latest"
+  - docker run "$env:DOCKER_USER/$env:IMAGE:{version}"
 
 deploy_script:
-  - docker login -u="%DOCKER_USER%" -p="%DOCKER_PASS"
-  - docker push %DOCKER_USER%/%IMAGE%:latest
-  - docker push %DOCKER_USER%/%IMAGE%:{version}
+  - docker login -u="$env:DOCKER_USER" -p="$env:DOCKER_PASS"
+  - docker push "$env:DOCKER_USER/$env:IMAGE:latest"
+  - docker push "$env:DOCKER_USER/$env:IMAGE:{version}"
