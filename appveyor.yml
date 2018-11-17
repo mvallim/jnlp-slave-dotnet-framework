@@ -3,24 +3,25 @@ image:
   - Visual Studio 2017
 
 environment:
-  DOCKER_USER:
-    secure: 2cYPe04KPC9GMZXW58ch+Q==
-  DOCKER_PASS:
-    secure: C2jl7oXoaoVnUHnhrHMKug==
-  IMAGE: "jnlp-slave-dotnet-framework"
+  global:
+    DOCKER_USER:
+      secure: 2cYPe04KPC9GMZXW58ch+Q==
+    DOCKER_PASS:
+      secure: C2jl7oXoaoVnUHnhrHMKug==
+    IMAGE: "jnlp-slave-dotnet-framework"
     
 install:
   - docker version
 
 build_script:
-  - docker build -t $env:DOCKER_USER/$env:IMAGE:latest -f docker/Dockerfile
-  - docker tag $env:DOCKER_USER/$env:IMAGE:latest $env:DOCKER_USER/$env:IMAGE:{version}
+  - docker build -t %DOCKER_USER%/%IMAGE%:latest -f docker/Dockerfile
+  - docker tag %DOCKER_USER%/%IMAGE%:latest %DOCKER_USER%/%IMAGE%:{version}
 
 test_script:
-  - docker run $env:DOCKER_USER/$env:IMAGE:latest
-  - docker run $env:DOCKER_USER/$env:IMAGE:{version}
+  - docker run %DOCKER_USER%/%IMAGE%:latest
+  - docker run %DOCKER_USER%/%IMAGE%:{version}
 
 deploy_script:
-  - docker login -u="$env:DOCKER_USER" -p="$env:DOCKER_PASS"
-  - docker push $env:DOCKER_USER/$env:IMAGE:latest
-  - docker push $env:DOCKER_USER/$env:IMAGE:$env:version
+  - docker login -u="%DOCKER_USER%" -p="%DOCKER_PASS"
+  - docker push %DOCKER_USER%/%IMAGE%:latest
+  - docker push %DOCKER_USER%/%IMAGE%:{version}
