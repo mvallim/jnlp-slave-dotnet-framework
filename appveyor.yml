@@ -17,6 +17,7 @@ build_script:
   - docker tag %DOCKER_USER%/%IMAGE%:latest %DOCKER_USER%/%IMAGE%:{version}
 
 test_script:
+  - echo %DOCKER_USER%/%IMAGE%
   - docker run %DOCKER_USER%/%IMAGE%:latest
   - docker run %DOCKER_USER%/%IMAGE%:{version}
 
