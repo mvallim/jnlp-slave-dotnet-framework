@@ -1,4 +1,3 @@
-$ErrorActionPreference = 'Stop';
 Write-Host Starting build
 
 cd docker
