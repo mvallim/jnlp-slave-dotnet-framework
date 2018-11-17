@@ -3,8 +3,24 @@ image:
   - Visual Studio 2017
 
 environment:
-  matrix:
-    - ARCH: amd64
+  DOCKER_USER:
+    secure: 2cYPe04KPC9GMZXW58ch+Q==
+  DOCKER_PASS:
+    secure: C2jl7oXoaoVnUHnhrHMKug==
+  IMAGE: "jnlp-slave-dotnet-framework"
+    
+install:
+  - docker version
 
 build_script:
-  - ps: ./build.ps1
+  - docker build -t $env:DOCKER_USER/$env:IMAGE:latest -f docker/Dockerfile
+  - docker tag $env:DOCKER_USER/$env:IMAGE:latest $env:DOCKER_USER/$env:IMAGE:{version}
+
+test_script:
+  - docker run $env:DOCKER_USER/$env:IMAGE:latest
+  - docker run $env:DOCKER_USER/$env:IMAGE:{version}
+
+deploy_script:
+  - docker login -u="$env:DOCKER_USER" -p="$env:DOCKER_PASS"
+  - docker push $env:DOCKER_USER/$env:IMAGE:latest
+  - docker push $env:DOCKER_USER/$env:IMAGE:$env:version
