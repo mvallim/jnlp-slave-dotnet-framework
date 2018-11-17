@@ -10,6 +10,7 @@ environment:
   IMAGE: "jnlp-slave-dotnet-framework"
     
 install:
+  - docker build --help
   - docker version
 
 build_script:
