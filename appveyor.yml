@@ -10,11 +10,10 @@ environment:
   IMAGE: "jnlp-slave-dotnet-framework"
     
 install:
-  - docker build --help
   - docker version
 
 build_script:
-  - docker build -t "%DOCKER_USER%/%IMAGE%:latest" -f docker/Dockerfile
+  - docker build --rm -t "%DOCKER_USER%/%IMAGE%:latest" -f ./docker/Dockerfile
   - docker tag "%DOCKER_USER%/%IMAGE%:latest" "%DOCKER_USER%/%IMAGE%:{version}"
 
 test_script:
