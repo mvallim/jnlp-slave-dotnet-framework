@@ -12,7 +12,7 @@ install:
   - docker version
 
 build_script:
-  - docker build --rm -t %DOCKER_USER%/%IMAGE%:latest ./docker/Dockerfile
+  - docker build --rm -t %DOCKER_USER%/%IMAGE%:latest ./docker
   - docker tag %DOCKER_USER%/%IMAGE%:latest %DOCKER_USER%/%IMAGE%:{version}
 
 test_script:
