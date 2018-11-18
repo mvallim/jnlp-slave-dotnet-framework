@@ -1,4 +1,4 @@
-version: 1.0.43
+version: 1.0.44
 
 image:
   - Visual Studio 2017
@@ -23,11 +23,16 @@ install:
   - docker version
 
 build_script:
-  - docker build --rm -t %DOCKER_USER%/%IMAGE%:latest .
-  - docker tag %DOCKER_USER%/%IMAGE%:latest %DOCKER_USER%/%IMAGE%:%APPVEYOR_BUILD_VERSION%
+  - echo "build"
+#  - docker build --rm -t %DOCKER_USER%/%IMAGE%:latest .
+#  - docker tag %DOCKER_USER%/%IMAGE%:latest %DOCKER_USER%/%IMAGE%:%APPVEYOR_BUILD_VERSION%
 
 deploy_script:
-  - ps: if ($env:APPVEYOR_REPO_TAG -eq "true") { docker login -u=$env:DOCKER_USER -p=$env:DOCKER_PASS }
-  - ps: if ($env:APPVEYOR_REPO_TAG -eq "true") { docker push $env:DOCKER_USER/$env:IMAGE:latest }
-  - ps: if ($env:APPVEYOR_REPO_TAG -eq "true") { docker push $env:DOCKER_USER/$env:IMAGE:$env:APPVEYOR_BUILD_VERSION }
-  - echo "Done"
+  - ps: | 
+          $ErrorActionPreference = "Stop"
+          if ($env:APPVEYOR_REPO_TAG -eq "true") { 
+            docker login -u="$env:DOCKER_USER" -p="$env:DOCKER_PASS" }
+            #docker push $env:DOCKER_USER/$env:IMAGE:latest }
+            #docker push $env:DOCKER_USER/$env:IMAGE:$env:APPVEYOR_BUILD_VERSION 
+          }
+          echo "Done"
