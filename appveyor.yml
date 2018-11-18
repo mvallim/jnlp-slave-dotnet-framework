@@ -7,19 +7,20 @@ environment:
   DOCKER_PASS:
     secure: C2jl7oXoaoVnUHnhrHMKug==
   IMAGE: "jnlp-slave-dotnet-framework"
+  VERSION: "{version}"
     
 install:
   - docker version
 
 build_script:
   - docker build --rm -t %DOCKER_USER%/%IMAGE%:latest ./docker
-  - docker tag %DOCKER_USER%/%IMAGE%:latest %DOCKER_USER%/%IMAGE%:{version}
+  - docker tag %DOCKER_USER%/%IMAGE%:latest %DOCKER_USER%/%IMAGE%:%VERSION%
 
 test_script:
   - docker run %DOCKER_USER%/%IMAGE%:latest
-  - docker run %DOCKER_USER%/%IMAGE%:{version}
+  - docker run %DOCKER_USER%/%IMAGE%:%VERSION%
 
 deploy_script:
   - docker login -u="%DOCKER_USER%" -p="%DOCKER_PASS%"
   - docker push %DOCKER_USER%/%IMAGE%:latest
-  - docker push %DOCKER_USER%/%IMAGE%:{version}
+  - docker push %DOCKER_USER%/%IMAGE%:%VERSION%
