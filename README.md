@@ -3,9 +3,10 @@
 [![](https://ci.appveyor.com/api/projects/status/vmr2c3al8i4jtis4?svg=true)](https://ci.appveyor.com/api/projects/status/vmr2c3al8i4jtis4?svg=true) [![](https://img.shields.io/docker/pulls/mvallim/jnlp-slave-dotnet-framework.svg)](https://img.shields.io/docker/pulls/mvallim/jnlp-slave-dotnet-framework.svg) [![](https://img.shields.io/docker/stars/mvallim/jnlp-slave-dotnet-framework.svg)](https://img.shields.io/docker/stars/mvallim/jnlp-slave-dotnet-framework.svg)
 
 This is a base image for Jenkins agent (FKA "slave") on Windows using JNLP to establish connection.
+
 This container contains:
 
-* Microsoft SQL Server 2014 (SP2) (KB3171021) - 12.0.5000.0
+* Microsoft® SQL Server® 2014 Service Pack 2 (SP2) Express - 12.0.5000.0
 * Git - 2.19.1
 * Java 8 - OpenJDK
 * .Net Framework - 4.7.2 SDK
