@@ -22,9 +22,9 @@ skip_commits:
 install:
   - docker version
 
-build_script:
-  - docker build --rm -t %DOCKER_USER%/%IMAGE%:latest .
-  - docker tag %DOCKER_USER%/%IMAGE%:latest %DOCKER_USER%/%IMAGE%:%APPVEYOR_BUILD_VERSION%
+#build_script:
+#  - docker build --rm -t %DOCKER_USER%/%IMAGE%:latest .
+#  - docker tag %DOCKER_USER%/%IMAGE%:latest %DOCKER_USER%/%IMAGE%:%APPVEYOR_BUILD_VERSION%
 
 deploy_script:
   - ps: if ($env:appveyor_repo_tag) { docker login -u="$env:DOCKER_USER" -p="$env:DOCKER_PASS" }
