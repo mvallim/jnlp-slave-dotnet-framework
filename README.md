@@ -1,6 +1,6 @@
 # Jenkins JNLP Slaves as Windows Container
 
-[![build status](https://ci.appveyor.com/api/projects/status/vmr2c3al8i4jtis4?svg=true)](https://ci.appveyor.com/project/mvallim/jnlp-slave-dotnet-framework "build status") ![pulls](https://img.shields.io/docker/pulls/mvallim/jnlp-slave-dotnet-framework.svg "pulls") ![stars](https://img.shields.io/docker/stars/mvallim/jnlp-slave-dotnet-framework.svg "stars")
+[![build status](https://ci.appveyor.com/api/projects/status/vmr2c3al8i4jtis4?svg=true)](https://ci.appveyor.com/project/mvallim/jnlp-slave-dotnet-framework "build status") [![pulls](https://img.shields.io/docker/pulls/mvallim/jnlp-slave-dotnet-framework.svg "pulls")](https://img.shields.io/docker/pulls/mvallim/jnlp-slave-dotnet-framework.svg) [![stars](https://img.shields.io/docker/stars/mvallim/jnlp-slave-dotnet-framework.svg "stars")](https://img.shields.io/docker/stars/mvallim/jnlp-slave-dotnet-framework.svg)
 
 This is a base image for Jenkins agent (FKA "slave") on Windows using JNLP to establish connection.
 
