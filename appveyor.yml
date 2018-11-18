@@ -25,10 +25,6 @@ build_script:
   - docker build --rm -t %DOCKER_USER%/%IMAGE%:latest .
   - docker tag %DOCKER_USER%/%IMAGE%:latest %DOCKER_USER%/%IMAGE%:%APPVEYOR_BUILD_VERSION%
 
-test_script:
-  - docker run %DOCKER_USER%/%IMAGE%:latest
-  - docker run %DOCKER_USER%/%IMAGE%:%APPVEYOR_BUILD_VERSION%
-
 deploy_script:
   - docker login -u="%DOCKER_USER%" -p="%DOCKER_PASS%"
   - docker push %DOCKER_USER%/%IMAGE%:latest
