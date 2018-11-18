@@ -26,13 +26,7 @@ build_script:
   - docker build --rm -t %DOCKER_USER%/%IMAGE%:latest .
   - docker tag %DOCKER_USER%/%IMAGE%:latest %DOCKER_USER%/%IMAGE%:%APPVEYOR_BUILD_VERSION%
 
-deploy:
-  - provider: Environment
-    on:
-      branch: /^v\d+\.\d+(\.\d+)?(-\S*)?$/
-      appveyor_repo_tag: true
-      
 deploy_script:
-  - docker login -u="%DOCKER_USER%" -p="%DOCKER_PASS%"
-  - docker push %DOCKER_USER%/%IMAGE%:latest
-  - docker push %DOCKER_USER%/%IMAGE%:%APPVEYOR_BUILD_VERSION%
+  - ps: if ($env:appveyor_repo_tag) { docker login -u="$env:DOCKER_USER" -p="$env:DOCKER_PASS" }
+  - ps: if ($env:appveyor_repo_tag) { docker push $env:DOCKER_USER/$end:IMAGE:latest }
+  - ps: if ($env:appveyor_repo_tag) { docker push $env:DOCKER_USER/$end:IMAGE:$env:APPVEYOR_BUILD_VERSION }
