@@ -29,7 +29,7 @@ build_script:
 #  - docker tag %DOCKER_USER%/%IMAGE%:latest %DOCKER_USER%/%IMAGE%:%VERSION%
 
 deploy_script:
-  - |
+  - ps: |
       #if ($env:APPVEYOR_REPO_TAG EQU "true") { 
         docker login -u="$env:DOCKER_USER" -p="$env:DOCKER_PASS" | out-null
         #docker push $env:DOCKER_USER/$env:IMAGE:latest
