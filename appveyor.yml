@@ -30,9 +30,9 @@ build_script:
 deploy_script:
   - ps: | 
           $ErrorActionPreference = "Stop"
-          if ($env:APPVEYOR_REPO_TAG -eq "true") { 
-            docker login -u="$env:DOCKER_USER" -p="$env:DOCKER_PASS" }
-            #docker push $env:DOCKER_USER/$env:IMAGE:latest }
+          #if ($env:APPVEYOR_REPO_TAG -eq "true") { 
+            docker login -u="$env:DOCKER_USER" -p="$env:DOCKER_PASS"
+            #docker push $env:DOCKER_USER/$env:IMAGE:latest
             #docker push $env:DOCKER_USER/$env:IMAGE:$env:APPVEYOR_BUILD_VERSION 
-          }
+          #}
           echo "Done"
