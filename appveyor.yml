@@ -31,3 +31,4 @@ deploy_script:
   - ps: if ($env:APPVEYOR_REPO_TAG -eq "true") { docker push $env:DOCKER_USER/$env:IMAGE:latest }
   - ps: if ($env:APPVEYOR_REPO_TAG -eq "true") { docker push $env:DOCKER_USER/$env:IMAGE:$env:APPVEYOR_BUILD_VERSION }
   - echo "Done"
+  
