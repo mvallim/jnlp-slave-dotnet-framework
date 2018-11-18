@@ -31,7 +31,7 @@ build_script:
 deploy_script:
   - ps: |
       #if ($env:APPVEYOR_REPO_TAG EQU "true") { 
-        docker login -u="$env:DOCKER_USER" -p="$env:DOCKER_PASS" | out-null
+        echo $env:DOCKER_PASS | docker login -u="$env:DOCKER_USER" --password-stdin | Out-null
         #docker push $env:DOCKER_USER/$env:IMAGE:latest
         #docker push $env:DOCKER_USER/$env:IMAGE:$env:VERSION 
       #}
