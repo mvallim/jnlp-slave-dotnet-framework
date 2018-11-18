@@ -10,6 +10,7 @@ environment:
   VERSION: "{version}"
     
 install:
+  - echo %VERSION%
   - docker version
 
 build_script:
