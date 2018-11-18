@@ -27,6 +27,6 @@ install:
 #  - docker tag %DOCKER_USER%/%IMAGE%:latest %DOCKER_USER%/%IMAGE%:%APPVEYOR_BUILD_VERSION%
 
 deploy_script:
-  - ps: if ($env:appveyor_repo_tag) { docker login -u="$env:DOCKER_USER" -p="$env:DOCKER_PASS" }
-  - ps: if ($env:appveyor_repo_tag) { docker push $env:DOCKER_USER/$end:IMAGE:latest }
-  - ps: if ($env:appveyor_repo_tag) { docker push $env:DOCKER_USER/$end:IMAGE:$env:APPVEYOR_BUILD_VERSION }
+  - ps: if ($env:APPVEYOR_REPO_TAG) { docker login -u="$env:DOCKER_USER" -p="$env:DOCKER_PASS" }
+  - ps: if ($env:APPVEYOR_REPO_TAG) { docker push $env:DOCKER_USER/$env:IMAGE:latest }
+  - ps: if ($env:APPVEYOR_REPO_TAG) { docker push $env:DOCKER_USER/$env:IMAGE:$env:APPVEYOR_BUILD_VERSION }
