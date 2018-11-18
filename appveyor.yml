@@ -1,4 +1,5 @@
 version: 1.0.{build}
+
 image:
   - Visual Studio 2017
 
@@ -7,9 +8,17 @@ environment:
   DOCKER_PASS:
     secure: C2jl7oXoaoVnUHnhrHMKug==
   IMAGE: "jnlp-slave-dotnet-framework"
+
+branches:
+  only:
+    - master
+
+skip_commits:
+  files:
+    - docs/*
+    - '**/*.md'  
     
 install:
-  - echo %APPVEYOR_BUILD_VERSION%
   - docker version
 
 build_script:
