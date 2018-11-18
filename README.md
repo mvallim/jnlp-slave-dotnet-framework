@@ -42,5 +42,3 @@ If you have any problems with or questions about this image, please contact me t
 ## Contributing
 
 You are invited to contribute new features, fixes, or updates, large or small via pull requests, and I'll do my best to process them as fast as I can.
-
-current version 1.0.39
