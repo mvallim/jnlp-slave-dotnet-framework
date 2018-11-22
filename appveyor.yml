@@ -8,7 +8,7 @@ environment:
   DOCKER_PASS:
     secure: C2jl7oXoaoVnUHnhrHMKug==
   IMAGE: "jnlp-slave-dotnet-framework"
-  VERSION: "1.0.1"
+  VERSION: "1.0.2"
 
 branches:
   only:
