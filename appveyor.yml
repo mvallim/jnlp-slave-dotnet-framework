@@ -24,19 +24,17 @@ install:
   - docker version
 
 build_script:
-  - echo %DOCKER_USER%/%IMAGE%:latest
-#  - docker build --rm -t %DOCKER_USER%/%IMAGE%:latest .
-#  - docker tag %DOCKER_USER%/%IMAGE%:latest %DOCKER_USER%/%IMAGE%:%VERSION%
+  - docker build --rm -t %DOCKER_USER%/%IMAGE%:latest .
+  - docker tag %DOCKER_USER%/%IMAGE%:latest %DOCKER_USER%/%IMAGE%:%VERSION%
 
 after_build:
   - docker images  
 
 deploy_script:
   - ps: |
-      if (${env:APPVEYOR_REPO_TAG} -eq "false") { 
-        echo ${env:DOCKER_PASS} | docker login -u="${env:DOCKER_USER}" --password-stdin
-        echo ${env:DOCKER_USER}/${env:IMAGE}
-        echo ${env:DOCKER_USER}/${env:IMAGE}:latest
-        echo ${env:DOCKER_USER}/${env:IMAGE}:${env:VERSION}
+      if (${env:APPVEYOR_REPO_TAG} -eq "true") { 
+        echo ${env:DOCKER_PASS} | docker login -u="${env:DOCKER_USER}" --password-stdin | Out-null
+        docker push ${env:DOCKER_USER}/${env:IMAGE}:latest
+        docker push ${env:DOCKER_USER}/${env:IMAGE}:${env:VERSION}
       }
       echo "Done"
