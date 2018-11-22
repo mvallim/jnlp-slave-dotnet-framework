@@ -35,8 +35,8 @@ deploy_script:
   - ps: |
       if ($env:APPVEYOR_REPO_TAG -eq "false") { 
         echo $env:DOCKER_PASS | docker login -u="$env:DOCKER_USER" --password-stdin
-        echo $env:DOCKER_USER/$env:IMAGE
-        echo $env:DOCKER_USER/$env:IMAGE:latest
-        echo $env:DOCKER_USER/$env:IMAGE:$env:VERSION
+        echo ($env:DOCKER_USER)/($env:IMAGE)
+        echo ($env:DOCKER_USER)/($env:IMAGE):latest
+        echo ($env:DOCKER_USER)/($env:IMAGE):($env:VERSION)
       }
       echo "Done"
